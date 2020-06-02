@@ -19,6 +19,14 @@ span, p {
   word-break: break-all;
 }
 
+
+.ant-select-selector {
+  @apply shadow-md;
+  border-radius: 0.375rem !important;
+  padding: 5px !important;
+}
+
+
 /* Login */
 
 .login-bg {
