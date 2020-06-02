@@ -5,7 +5,7 @@ const router = [
     {
         path : '/',
         exact : false,
-        auth: true,
+        auth: false,
         // permission_route: 2,
         main : () => <DashBoard />
     },
