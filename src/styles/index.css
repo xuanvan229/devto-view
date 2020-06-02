@@ -1,0 +1,85 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+@responsive {
+  .bg-gradient-brand {
+    background-image: linear-gradient(#52D9E8, #29B1CC);
+  }
+}
+
+html, body{
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+span, p {
+  word-break: break-all;
+}
+
+/* Login */
+
+.login-bg {
+  background-image: url("../assets/images/background.jpg") ;
+}
+
+
+.rotate-0 {
+  transform: rotate(0deg);
+}
+.rotate-90 {
+  transform: rotate(90deg);
+}
+.rotate-180 {
+  transform: rotate(180deg);
+}
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.transform-05s {
+  -webkit-transition-property: margin-left; /* Safari */
+  -webkit-transition-duration: 0.5s; /* Safari */
+  transition-property: margin-left;
+  transition-duration: 0.5s;
+}
+
+.datePicker input{
+  @apply h-10 w-full;
+}
+
+
+.table-data .ant-table-thead tr th {
+  @apply bg-primary text-white font-bold;
+}
+
+.h300 {
+  height: 500px !important;
+}
+
+canvas {
+  width: 100%;
+}
+
+.pdf-viewer > div > div:nth-child(2) >div >div {
+  height: 600px !important;
+}
+.custom-file-upload {
+  margin-bottom: 0 !important;
+}
+.ant-select-selection--multiple {
+  min-height: 40px !important;
+}
+.ant-select-selection__rendered {
+  line-height: 40px !important;
+}
+
+.ant-select-selection--multiple > ul > li, .ant-select-selection--multiple .ant-select-selection__rendered > ul > li {
+  margin-top: 8px;
+}
+
+.select-box .ant-select-selection--single {
+  height: 40px !important;
+}
