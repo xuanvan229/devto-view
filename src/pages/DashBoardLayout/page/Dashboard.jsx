@@ -93,7 +93,6 @@ const DashBoard = props => {
       setLoading(false);
     } catch(e) {
       console.log("e", e);
-
     }
   }
 
@@ -134,7 +133,7 @@ const DashBoard = props => {
     //some additional logic to verify you are in the home URI
     if(!location) return false;
     const {pathname} = location;
-    console.log(pathname);
+    // console.log(pathname);
     return pathname === "/";
   }
 
@@ -156,14 +155,14 @@ const DashBoard = props => {
       }
       setArticles(result.data)
       setLoading(false);
-      console.log("blur");
+      // console.log("blur");
     }
     
   }
 
   const handleChange =(value) => {
     setTagQuery(value);
-    console.log("handleChange", value);
+    // console.log("handleChange", value);
   }
 
   function tagRender(props) {
@@ -210,7 +209,7 @@ const DashBoard = props => {
       setTagQuery(newTagQuery);
       setTagQueryPrevious(newTagQuery);
       // setLoading(true);
-      console.log("onDeselect", item);
+      // console.log("onDeselect", item);
       setTimeout( getArtilesData, 1000);
     }
   }
@@ -251,7 +250,6 @@ const DashBoard = props => {
                   <p className="mt-2 text-gray-700">
                     {item.description}
                   </p>
-                 
                 </div>
 
                 <div className="flex justify-between text-gray-700 flex-row mt-4 items-center">
@@ -260,7 +258,6 @@ const DashBoard = props => {
                     <span>
                       {item.user.name}
                     </span>
-                    
 
                   </div>
                   <div className="flex flex-row items-center">

@@ -12,7 +12,6 @@ class PrivateRoute extends Component {
   }
 
   render() {
-    console.log("it come to here", this.props)
     const { path, exact, component, login, baseApp } = this.props;
     const { isLogin } = login;
     if (baseApp.appLoading) {
