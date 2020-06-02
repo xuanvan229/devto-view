@@ -6,7 +6,7 @@ import PrivateRoute from './PrivateRoute/index'
 import * as combine from '../utils/config'
 function AppRouter() {
   return (
-      <div className="App">
+      <div className="App bg_theme">
           <Router>
               <Switch>
                   {combine.combineRouter(app).map((route,index) => {

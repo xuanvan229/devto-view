@@ -228,8 +228,8 @@ const DashBoard = props => {
       <div className="container flex flex-row flex-wrap">
       {
         articles.map(item => (
-          <div className=" w-full sm:w-1/2 lg:w-4/12 p-2 flex">
-            <a className="border flex flex-col shadow-md w-full rounded-md text-black bg-white hover:bg-gray-200 " href={item.url}>
+          <div className="w-full sm:w-1/2 lg:w-4/12 p-2 flex" key={item.id}>
+            <a className="border flex flex-col shadow-md w-full rounded-md text_primary_theme bg_theme hover:bg-gray-500 " href={item.url}>
               {item.cover_image ? (
                 <img className=" sm:w-full border-b sm:h-40 xl:h-56 rounded-tl-md rounded-tr-md object-cover" src={item.cover_image} loading="lazy" alt={item.description}/>
               ): (
@@ -237,7 +237,7 @@ const DashBoard = props => {
               )}
               <div className="flex flex-col flex-1 px-4 py-2">  
                 <div className="flex-1 flex flex-col items-start">
-                  <h1 className="text-xl font-semibold">
+                  <h1 className="text-xl font-semibold text_primary_theme">
                     {item.title}
                   </h1>
                   <div>
@@ -247,12 +247,12 @@ const DashBoard = props => {
                       ))
                     }
                   </div>
-                  <p className="mt-2 text-gray-700">
+                  <p className="mt-2 text_secondary_theme">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="flex justify-between text-gray-700 flex-row mt-4 items-center">
+                <div className="flex justify-between text_secondary_theme flex-row mt-4 items-center">
                   <div className="flex flex-row items-center">
                     <img src={item.user.profile_image_90} className="w-8 h-8 rounded-full mr-2" alt={item.user.name}/>
                     <span>
@@ -284,7 +284,7 @@ const DashBoard = props => {
   }
 
   return (
-    <div className="flex flex-col h-screen items-center">
+    <div className="flex min-h-screen flex-col items-center">
       <div className="container p-2 mt-8">
         <Select
           mode="multiple"

@@ -11165,6 +11165,32 @@ video {
   background-image: linear-gradient(#52D9E8, #29B1CC);
 }
 
+.bg_theme {
+  background-color: #4a5568;
+}
+
+.text_primary_theme {
+  color: #fff;
+}
+
+.text_secondary_theme {
+  color: #fff;
+}
+
+@media (prefers-color-scheme: light) {
+  .bg_theme {
+    background-color: #fff;
+  }
+
+  .text_primary_theme {
+    color: #000;
+  }
+
+  .text_secondary_theme {
+    color: #4a5568;
+  }
+}
+
 html, body{
   font-family: 'IBM Plex Sans', sans-serif;
 }

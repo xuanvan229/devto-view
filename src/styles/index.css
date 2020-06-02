@@ -11,6 +11,31 @@
   }
 }
 
+.bg_theme {
+  @apply bg-gray-700;
+}
+
+.text_primary_theme {
+  @apply text-white;
+}
+
+.text_secondary_theme {
+  @apply text-white;
+}
+
+@media (prefers-color-scheme: light) {
+  .bg_theme {
+    @apply bg-white;
+  }
+  .text_primary_theme {
+    @apply text-black;
+  }
+
+  .text_secondary_theme {
+    @apply text-gray-700;
+  }
+}
+
 html, body{
   font-family: 'IBM Plex Sans', sans-serif;
 }
