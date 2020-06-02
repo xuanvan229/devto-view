@@ -5,14 +5,56 @@ import screen from "./childrenRouter";
 import { Select, Typography, Divider } from 'antd';
 import {
   ClockCircleOutlined,
-  CloseOutlined
+  CloseOutlined,
+  HeartFilled
 } from '@ant-design/icons'
 import moment from 'moment';
 import logo from '../../../assets/images/logo.png'
 import loadingIMG from '../../../assets/images/loading.svg';
 import {post, get, put, download} from '../../../utils/api';
 
+function debounce(func, wait, immediate) {
+  // 'private' variable for instance
+  // The returned function will be able to reference this due to closure.
+  // Each call to the returned function will share this common timer.
+  var timeout;
 
+  // Calling debounce returns a new anonymous function
+  return function() {
+    // reference the context and args for the setTimeout function
+    var context = this,
+      args = arguments;
+
+    // Should the function be called now? If immediate is true
+    //   and not already in a timeout then the answer is: Yes
+    var callNow = immediate && !timeout;
+
+    // This is the basic debounce behaviour where you can call this 
+    //   function several times, but it will only execute once 
+    //   [before or after imposing a delay]. 
+    //   Each time the returned function is called, the timer starts over.
+    clearTimeout(timeout);
+
+    // Set the new timeout
+    timeout = setTimeout(function() {
+
+      // Inside the timeout function, clear the timeout variable
+      // which will let the next execution run when in 'immediate' mode
+      timeout = null;
+
+      // Check if the function already ran with the immediate flag
+      if (!immediate) {
+        // Call the original function with apply
+        // apply lets you define the 'this' object as well as the arguments 
+        //    (both captured before setTimeout)
+        func.apply(context, args);
+      }
+    }, wait);
+
+    // Immediate mode and no wait timer? Execute the function..
+    if (callNow) func.apply(context, args);
+  }
+}
 
 const getArticles = (tags) => {
   const url = `/articles`
@@ -33,7 +75,7 @@ const DashBoard = props => {
   const [openMenu, setOpenMenu] = React.useState(true);
   const [articles, setArticles] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  
+  const [openDropDown, setOpenDropDown] = React.useState(false);
   const [tagQuery, setTagQuery] = React.useState([]);
   const [tagQueryPrevious, setTagQueryPrevious] = React.useState([]);
   const [tags, setTags] = React.useState([]);
@@ -121,7 +163,7 @@ const DashBoard = props => {
 
   const handleChange =(value) => {
     setTagQuery(value);
-    console.log(value);
+    console.log("handleChange", value);
   }
 
   function tagRender(props) {
@@ -133,8 +175,44 @@ const DashBoard = props => {
         </span>
         <CloseOutlined onClick={onClose} />
       </div>
-      
     );
+  }
+
+  const removeItemOnce = (arr, value) => { 
+    var index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}
+
+  const dropDownChange = (open) => {
+    setOpenDropDown(open);
+    // console.log("dropDownChange", open);
+  }
+
+  const getArtilesData = async () => {
+    let result;
+    setLoading(true);
+    if(tagQuery.length !== 0) {
+      result= await getArticles(tagQuery.join(", "))
+    } else {
+      result=  await getArticles()
+    }
+    setArticles(result.data)
+    setLoading(false);
+  }
+
+  const onDeselect = (item) => {
+    setTagQuery()
+    if(!openDropDown) {
+      let newTagQuery = removeItemOnce(tagQuery, item);
+      setTagQuery(newTagQuery);
+      setTagQueryPrevious(newTagQuery);
+      // setLoading(true);
+      console.log("onDeselect", item);
+      setTimeout( getArtilesData, 1000);
+    }
   }
 
   const listView = () => {
@@ -173,6 +251,7 @@ const DashBoard = props => {
                   <p className="mt-2 text-gray-700">
                     {item.description}
                   </p>
+                 
                 </div>
 
                 <div className="flex justify-between text-gray-700 flex-row mt-4 items-center">
@@ -181,12 +260,20 @@ const DashBoard = props => {
                     <span>
                       {item.user.name}
                     </span>
+                    
+
                   </div>
                   <div className="flex flex-row items-center">
                     <ClockCircleOutlined />
                     <span className="ml-1">
                       {moment(item.published_at).format("MM/DD/YYYY")}
                     </span>
+                    <div className="flex ml-3 flex-row items-center">
+                      <HeartFilled className="text-red-500" />
+                      <span className="ml-1">
+                        {item.public_reactions_count}
+                      </span>
+                    </div>
                   </div>
 
                 </div>
@@ -208,7 +295,10 @@ const DashBoard = props => {
           placeholder="Fillter by tag"
           defaultValue={[]}
           tagRender={tagRender}
+          onDropdownVisibleChange={dropDownChange}
           onMouseLeave={handleBlur}
+          onBlur={handleBlur}
+          onDeselect={onDeselect}
           onChange={handleChange}
           options={tags}
         />
@@ -218,7 +308,7 @@ const DashBoard = props => {
           <div>
             <img src={loadingIMG} alt="loading" />
           </div>
-        ): listView() 
+        ): listView()
       }
 
     </div>
