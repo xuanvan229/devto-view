@@ -36,6 +36,34 @@
   }
 }
 
+.post h2{
+  @apply text-2xl mb-6;
+}
+
+.post h3, h4, h5{
+  @apply text-xl mb-4;
+}
+
+.post hr {
+  @apply mb-4;
+}
+
+.post ul {
+  @apply list-disc pl-4;
+}
+
+.post a {
+  @apply text-blue-600;
+}
+
+.post p, li{
+  @apply mb-4 text-lg;
+}
+
+.post .highlight {
+  @apply mb-4;
+}
+
 html, body{
   font-family: 'IBM Plex Sans', sans-serif;
 }

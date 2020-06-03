@@ -201,7 +201,10 @@ const DashBoard = props => {
       {
         articles.map(item => (
           <div className="w-full sm:w-1/2 lg:w-4/12 p-2 flex" key={item.id}>
-            <a className="border flex flex-col shadow-md w-full rounded-md text_primary_theme bg_theme hover:bg-gray-500 " href={item.url}>
+            <Link 
+              className="border flex flex-col shadow-md w-full rounded-md text_primary_theme bg_theme hover:bg-gray-500 " 
+              to={{pathname: `/post${item.path}`, query: {item}}}
+              >
               {item.cover_image ? (
                 <img className=" sm:w-full border-b sm:h-40 xl:h-56 rounded-tl-md rounded-tr-md object-cover" src={item.cover_image} loading="lazy" alt={item.description}/>
               ): (
@@ -247,7 +250,7 @@ const DashBoard = props => {
 
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         ))
       }

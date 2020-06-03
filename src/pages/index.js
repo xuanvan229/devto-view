@@ -1,14 +1,15 @@
 
 import Login from './Login/index'
 import DashBoard from './DashBoardLayout/index'
-import User from './User/index'
+import Post from './Post/index'
 export const app = {
     Login,
+    Post,
     DashBoard
 }
 
 export const subapp = {
-    User,
+    // User,
 }
 
 // export default app

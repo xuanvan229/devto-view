@@ -6869,7 +6869,6 @@ video {
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -11189,6 +11188,38 @@ video {
   .text_secondary_theme {
     color: #4a5568;
   }
+}
+
+.post h2{
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post h3, h4, h5{
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.post hr {
+  margin-bottom: 1rem;
+}
+
+.post ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+.post a {
+  color: #3182ce;
+}
+
+.post p, li{
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.post .highlight {
+  margin-bottom: 1rem;
 }
 
 html, body{
@@ -17541,7 +17572,6 @@ canvas {
   }
 
   .sm\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -28102,7 +28132,6 @@ canvas {
   }
 
   .md\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -38663,7 +38692,6 @@ canvas {
   }
 
   .lg\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -49224,7 +49252,6 @@ canvas {
   }
 
   .xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
