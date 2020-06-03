@@ -10,6 +10,7 @@ import {
   CloseOutlined,
   HeartFilled
 } from '@ant-design/icons'
+import https from 'https';
 import moment from 'moment';
 import logo from '../../../assets/images/logo.png'
 import loadingIMG from '../../../assets/images/loading.svg';
@@ -20,8 +21,13 @@ import hljs from "highlight.js";
 import {post, get, put, download} from '../../../utils/api';
 
 const getData = (path) => {
-  const url = `http://128.199.152.226:8000/get-post`
-  return axios.get(url, {
+  const instance = axios.create({
+    httpsAgent: new https.Agent({  
+      rejectUnauthorized: false
+    })
+  });
+  const url = `https://devto-backend.herokuapp.com/get-post`
+  return instance.get(url, {
     params: {
       path: path
     }
