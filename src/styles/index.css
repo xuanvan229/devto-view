@@ -36,6 +36,10 @@
   }
 }
 
+.post h1{
+  @apply text-3xl mb-6;
+}
+
 .post h2{
   @apply text-2xl mb-6;
 }
